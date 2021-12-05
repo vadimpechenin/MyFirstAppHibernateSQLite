@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:sqlite:D:/JAVA/Programms/CompleteSetOfBlades2021/JAVAVersion/CompliteBlades2D2021_Java_Hibernate/testUser.db</property>
+        <property name="connection.driver_class">org.sqlite.JDBC</property>
+        <property name="hibernate.dialect">org.sqlite.hibernate.dialect.SQLiteDialect</property>
+        <property name="show_sql">true</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+    </session-factory>
+</hibernate-configuration>
