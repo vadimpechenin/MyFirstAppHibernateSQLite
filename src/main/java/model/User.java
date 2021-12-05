@@ -18,11 +18,11 @@ public class User extends ObjectWithID
     public String UserName;
 
     @Column(name = "password")
-    public boolean Password;
+    public String Password;
 
     @Column(name = "location")
-    public double Location;
+    public String Location;
 
     @Column(name = "gender")
-    public double Gender;
+    public String Gender;
 }
