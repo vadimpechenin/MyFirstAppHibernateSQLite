@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserService {
@@ -40,6 +41,41 @@ public class UserService {
         Transaction transaction = session.beginTransaction();
         try {
             session.save(user);
+            transaction.commit();
+        }catch (Exception e) {
+            result = false;
+            e.printStackTrace();
+            transaction.rollback();
+        }finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public static boolean DeleteUser(User user) {
+        boolean result = true;
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            CommonService.DeleteItemsHandler(session, "User", new ArrayList<>(Arrays.asList(user)));
+            transaction.commit();
+        }catch (Exception e) {
+            result = false;
+            e.printStackTrace();
+            transaction.rollback();
+        }
+        finally {
+            session.close();
+        }
+        return result;
+    }
+
+    public static boolean UpdateUser(User user) {
+        boolean result = true;
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.update(user);
             transaction.commit();
         }catch (Exception e) {
             result = false;
