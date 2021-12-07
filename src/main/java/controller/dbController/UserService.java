@@ -1,7 +1,7 @@
-package controller;
-
+//Сервис для работы с табличкой пользователей
+package controller.dbController;
 import config.HibernateSessionFactoryUtil;
-import model.Profile;
+import model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -9,24 +9,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ProfileService {
-    //Класс для реализации методов работы в базе данных с таблицей profiles
-    public static boolean GetProfiles(String userID, ArrayList<Profile> profiles) {
+public class UserService {
+    //Класс для реализации методов работы в базе данных с таблицей users
+    public static boolean GetUsers(String userName, String password, ArrayList<User> users) {
         boolean result = true;
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
-            profiles.clear();
-            List<Profile> items;
-            if(userID != null) {
-                //String s = "From Profile Where UserID = :UserID";
-                items = session.createQuery("From Profile Where UserID = :UserID", Profile.class)
-                        .setParameter("UserID", userID)
+            users.clear();
+            List<User> items;
+            if(userName != null) {
+                items = session.createQuery("From User Where UserName = :UserName and Password = :Password", User.class)
+                        .setParameter("UserName", userName)
+                        .setParameter("Password", password)
                         .list();
             }else {
-                items = session.createQuery("From Profile", Profile.class).list();
+                items = session.createQuery("From User", User.class).list();
             }
-            profiles.addAll(items);
+            users.addAll(items);
         }catch (Exception e) {
             result = false;
             e.printStackTrace();
@@ -36,12 +36,12 @@ public class ProfileService {
         return result;
     }
 
-    public static boolean CreateProfile(Profile profile) {
+    public static boolean CreateUser(User user) {
         boolean result = true;
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
-            session.save(profile);
+            session.save(user);
             transaction.commit();
         }catch (Exception e) {
             result = false;
@@ -53,12 +53,12 @@ public class ProfileService {
         return result;
     }
 
-    public static boolean DeleteProfile(Profile profile) {
+    public static boolean DeleteUser(User user) {
         boolean result = true;
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
-            CommonService.DeleteItemsHandler(session, "Profile", new ArrayList<>(Arrays.asList(profile)));
+            CommonService.DeleteItemsHandler(session, "User", new ArrayList<>(Arrays.asList(user)));
             transaction.commit();
         }catch (Exception e) {
             result = false;
@@ -71,12 +71,12 @@ public class ProfileService {
         return result;
     }
 
-    public static boolean UpdateProfile(Profile profile) {
+    public static boolean UpdateUser(User user) {
         boolean result = true;
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
-            session.update(profile);
+            session.update(user);
             transaction.commit();
         }catch (Exception e) {
             result = false;
@@ -87,5 +87,4 @@ public class ProfileService {
         }
         return result;
     }
-
 }

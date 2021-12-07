@@ -1,6 +1,6 @@
 package envelope;
-import controller.ProfileService;
-import controller.UserService;
+import controller.dbController.ProfileService;
+import controller.dbController.UserService;
 import model.*;
 
 import java.util.ArrayList;

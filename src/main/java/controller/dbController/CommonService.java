@@ -1,4 +1,4 @@
-package controller;
+package controller.dbController;
 
 
 import model.ObjectWithID;

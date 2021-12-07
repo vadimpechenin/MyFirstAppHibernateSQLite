@@ -1,18 +1,36 @@
-import controller.ProfileService;
-import controller.UserService;
+import controller.dbController.ProfileService;
+import controller.dbController.UserService;
 import envelope.ObjectFactory;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import model.Profile;
 import model.User;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 
-public class Test{
+public class Test extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+
+        URL url = new File("src/main/resources/view/sample.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        //Parent root = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
+        primaryStage.setTitle("Мое первое приложение");
+        primaryStage.setScene(new Scene(root, 700, 400));
+        primaryStage.show();
+
+    }
 
 
 
-
-    
     public static void main(String[] args){
+        launch(args);
         if (1==0) {
             // Проверка поиска пользователя
             String userLogin = "das";
