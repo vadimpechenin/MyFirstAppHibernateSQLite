@@ -18,9 +18,9 @@ public class Test extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        URL url = new File("src/main/resources/view/sample.fxml").toURI().toURL();
-        Parent root = FXMLLoader.load(url);
-        //Parent root = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
+        //URL url = new File("src/main/resources/view/sample.fxml").toURI().toURL();
+        //Parent root = FXMLLoader.load(url);
+        Parent root = FXMLLoader.load(getClass().getResource("/view/sample.fxml"));
         primaryStage.setTitle("Мое первое приложение");
         primaryStage.setScene(new Scene(root, 700, 400));
         primaryStage.show();
