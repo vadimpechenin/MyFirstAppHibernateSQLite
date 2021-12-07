@@ -1,4 +1,5 @@
 package envelope;
+import controller.ProfileService;
 import controller.UserService;
 import model.*;
 
@@ -36,9 +37,22 @@ public class ObjectFactory
             return item.toString();
         }
 
+        public String CreateIDProfile () {
+            ArrayList<Profile> profiles = new ArrayList<>();
+            ProfileService.GetProfiles(null, profiles);
+            Integer item = profiles.size()+1;
+            return item.toString();
+        }
+
         public User CreateUser() {
         User result = new User();
         result.ID = CreateIDUser();
         return result;
     }
+
+        public Profile CreateProfile() {
+            Profile result = new Profile();
+            result.ID = CreateIDProfile();
+            return result;
+        }
 }

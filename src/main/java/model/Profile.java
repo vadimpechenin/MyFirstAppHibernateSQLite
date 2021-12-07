@@ -15,6 +15,6 @@ public class Profile extends ObjectWithID
     public String Age;
 
     @Column(name = "height")
-    public String Heigh;
+    public String Height;
 
 }
