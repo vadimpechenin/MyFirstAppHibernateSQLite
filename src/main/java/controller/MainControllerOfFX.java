@@ -86,7 +86,7 @@ public class MainControllerOfFX {
 
     public void openNewScene(String window){
         //Скрыть окно
-        loginSignUpButton.getScene().getWindow().hide();
+        //loginSignUpButton.getScene().getWindow().hide();
         // отображаем нужное окно
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
